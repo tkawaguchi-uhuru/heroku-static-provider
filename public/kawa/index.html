@@ -67,6 +67,10 @@ $(function(){
     console.log(s);
     queries = s.replace(/^\?/, '').split('&');
     console.log(queries);
+    var params = _.object(_.compact(_.map(location.search.slice(1).split('&'), function(item){
+      if (item) return item.split('=');
+    })));
+    console.log(params);
   });
 });
 </script>
