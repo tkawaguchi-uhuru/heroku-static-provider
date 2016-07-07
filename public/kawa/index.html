@@ -41,13 +41,14 @@ var getURL = function(){
   var requestURL = authEndPoint+'?client_id='+clientId+'&response_type='+responseType+'&redirect_uri='+redirectURI;
   return requestURL;
 };
+
 //
 $(function(){
   $("#btnOAuth").on('click', function(){
     // Ajax
-    $.ajax(
-      settings_1
-    ).done(function(data){
+    /*
+    $.ajax({
+    }).done(function(data){
       console.log('成功したよ', data);
     }).fail(function(xhr){
       console.log('失敗したよ');
@@ -55,7 +56,8 @@ $(function(){
     }).complete(function(){
       console.log('おわた');
     });
-    //
+    */
+    window.location = getURL();
   });
   //
   $("#btnToken").on('click', function(){
