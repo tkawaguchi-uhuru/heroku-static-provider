@@ -37,18 +37,16 @@ var getURL = function(){
   var consumerSecret = "7599708008029895241";
   var authEndPoint = "https://test.salesforce.com/services/oauth2/authorize";
   var responseType = "token";
-  var redirectURI = "https://ajaxcallback.herokuapp.com/";
+  var redirectURI = "https://ajaxcallback.herokuapp.com/kawa/index.html";
   var requestURL = authEndPoint+'?client_id='+clientId+'&response_type='+responseType+'&redirect_uri='+redirectURI;
   return requestURL;
 };
 //
 $(function(){
-  var win;
   $("#btnOAuth").on('click', function(){
     // Ajax
-    /*
     $.ajax(
-      settings_2
+      settings_1
     ).done(function(data){
       console.log('成功したよ', data);
     }).fail(function(xhr){
@@ -57,10 +55,7 @@ $(function(){
     }).complete(function(){
       console.log('おわた');
     });
-    */
     //
-    win = window.open(getURL(), 'w1');
-    // console.log(win);
   });
   //
   $("#btnToken").on('click', function(){
