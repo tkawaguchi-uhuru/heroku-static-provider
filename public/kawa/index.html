@@ -61,13 +61,10 @@ $(function(){
   });
   //
   $("#btnToken").on('click', function(){
-    var parser = document.createElement('a');
-    parser.href = window.location;
-    var s = parser.search;
-    console.log(s);
-    queries = s.replace(/^\?/, '').split('&');
-    console.log(queries);
-    var params = _.object(_.compact(_.map(location.search.slice(1).split('&'), function(item){
+    // var parser = document.createElement('a');
+    // parser.href = window.location;
+    // var h = parser.hash;
+    var params = _.object(_.compact(_.map(location.hash.slice(1).split('&'), function(item){
       if (item) return item.split('=');
     })));
     console.log(params);
@@ -78,5 +75,8 @@ $(function(){
   <body>
     <input id="btnOAuth" type="button" value="Do OAuth!!">
     <input id="btnToken" type="button" value="Get access_token">
+    <div>
+      <a href="https://ajaxcallback.herokuapp.com/kawa/index.html">/kawa/index.html</a>
+    </div>
   </body>
 </html>
