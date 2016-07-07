@@ -62,7 +62,7 @@ $(function(){
       type: 'GET',
       url : decodeURIComponent(params['instance_url']) + '/services/data/v36.0/sobjects/',
       headers : {
-        'Authorization' : 'Bearer ' + params['access_token'],
+        'Authorization' : 'Bearer ' + decodeURIComponent(params['access_token']),
         'Content-Type' : 'application/json'
       }
     }).done(function(data){
