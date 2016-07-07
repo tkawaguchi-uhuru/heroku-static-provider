@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="description" content="${description}" />
+    <script   src="https://code.jquery.com/jquery-1.12.4.js"   integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU="   crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
+<script>
+/*
+ * まずは jQuery.ajax() で通信してみる
+ */
+var settings_1 = {
+  crossDomain: true,
+  method: 'POST',
+  // contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+  url: 'https://test.salesforce.com/services/oauth2/token',
+  data: {
+    grant_type: 'password',
+    password: 'sfdcj1234',
+    username: 'sf_analytics@adastria.co.jp.dev1',
+    client_id: '3MVG9e2mBbZnmM6ks2kVSUB0EdlcR2LQcMbi3ZRg2nrIkVsLo6wkU7LfzfOTYWxYP3177SqKS2wYO3tDlp4Sq',
+    client_secret: '7599708008029895241'
+  }
+};
+
+var settings_2 = {
+  url: 'http://weather.livedoor.com/forecast/webservice/json/v1?city=400040',
+  type:'GET',
+  dataType: 'json',
+  timeout:1000
+};
+
+var getURL = function(){
+  var clientId = "3MVG9e2mBbZnmM6ks2kVSUB0EdlcR2LQcMbi3ZRg2nrIkVsLo6wkU7LfzfOTYWxYP3177SqKS2wYO3tDlp4Sq";
+  var consumerSecret = "7599708008029895241";
+  var authEndPoint = "https://test.salesforce.com/services/oauth2/authorize";
+  var responseType = "token";
+  var redirectURI = "https://ajaxcallback.herokuapp.com/";
+  var requestURL = authEndPoint+'?client_id='+clientId+'&response_type='+responseType+'&redirect_uri='+redirectURI;
+  return requestURL;
+};
+//
+$(function(){
+  var win;
+  $("#btnOAuth").on('click', function(){
+    // Ajax
+    /*
+    $.ajax(
+      settings_2
+    ).done(function(data){
+      console.log('成功したよ', data);
+    }).fail(function(xhr){
+      console.log('失敗したよ');
+      console.log('xhr=', xhr);
+    }).complete(function(){
+      console.log('おわた');
+    });
+    */
+    //
+    win = window.open(getURL(), 'w1');
+    // console.log(win);
+  });
+  //
+  $("#btnToken").on('click', function(){
+    var parser = document.createElement('a');
+    parser.href = win.location;
+    var s = parser.search;
+    console.log(s);
+    queries = s.replace(/^\?/, '').split('&');
+    console.log(queries);
+  });
+});
+</script>
+  </head>
+  <body>
+    <input id="btnOAuth" type="button" value="Do OAuth!!">
+    <input id="btnToken" type="button" value="Get access_token">
+  </body>
+</html>
