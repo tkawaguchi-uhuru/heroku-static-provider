@@ -44,10 +44,27 @@ var getURL = function(){
 
 //
 $(function(){
+  var params;
   $("#btnOAuth").on('click', function(){
-    // Ajax
-    /*
-    $.ajax({
+    window.location = getURL();
+  });
+  $("#btnToken").on('click', function(){
+    // var parser = document.createElement('a');
+    // parser.href = window.location;
+    // var h = parser.hash;
+    params = _.object(_.compact(_.map(location.hash.slice(1).split('&'), function(item){
+      if (item) return item.split('=');
+    })));
+    console.log(params);
+  });
+  $("#btnCall001").on('click', function(){
+     $.ajax({
+      type: 'GET',
+      url : instance_url + '/services/data/v36.0/sobjects/',
+      headers : {
+        'Authorization' : 'Bearer ' + params['access_token'],
+        'Content-Type' : 'application/json'
+      }
     }).done(function(data){
       console.log('成功したよ', data);
     }).fail(function(xhr){
@@ -56,18 +73,6 @@ $(function(){
     }).complete(function(){
       console.log('おわた');
     });
-    */
-    window.location = getURL();
-  });
-  //
-  $("#btnToken").on('click', function(){
-    // var parser = document.createElement('a');
-    // parser.href = window.location;
-    // var h = parser.hash;
-    var params = _.object(_.compact(_.map(location.hash.slice(1).split('&'), function(item){
-      if (item) return item.split('=');
-    })));
-    console.log(params);
   });
 });
 </script>
@@ -75,6 +80,7 @@ $(function(){
   <body>
     <input id="btnOAuth" type="button" value="Do OAuth!!">
     <input id="btnToken" type="button" value="Get access_token">
+    <input id="btnCall001" type="button" value="Call REST API 001">
     <div>
       <a href="https://ajaxcallback.herokuapp.com/kawa/index.html">/kawa/index.html</a>
     </div>
