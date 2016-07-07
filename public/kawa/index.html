@@ -62,7 +62,7 @@ $(function(){
   //
   $("#btnToken").on('click', function(){
     var parser = document.createElement('a');
-    parser.href = win.location;
+    parser.href = window.location;
     var s = parser.search;
     console.log(s);
     queries = s.replace(/^\?/, '').split('&');
