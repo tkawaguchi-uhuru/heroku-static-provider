@@ -63,7 +63,7 @@ $(function(){
       url : decodeURIComponent(params['instance_url']) + '/services/data/v36.0/sobjects/',
       headers : {
         'Authorization' : 'Bearer ' + decodeURIComponent(params['access_token']),
-        'Content-Type' : 'application/json'
+        'X-PrettyPrint': true
       }
     }).done(function(data){
       console.log('成功したよ', data);
