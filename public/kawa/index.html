@@ -60,7 +60,7 @@ $(function(){
   $("#btnCall001").on('click', function(){
      $.ajax({
       type: 'GET',
-      url : params['instance_url'] + '/services/data/v36.0/sobjects/',
+      url : decodeURIComponent(params['instance_url']) + '/services/data/v36.0/sobjects/',
       headers : {
         'Authorization' : 'Bearer ' + params['access_token'],
         'Content-Type' : 'application/json'
